@@ -1,5 +1,5 @@
 --
--- Create model User
+-- Create model User, Users are customers
 --
 CREATE TABLE `user` (
     `id` BIGINT AUTO_INCREMENT NOT NULL PRIMARY KEY,
@@ -15,7 +15,7 @@ CREATE TABLE `user` (
     `date_joined` DATETIME(6) NOT NULL,
     `phone_number` VARCHAR(10) NOT NULL UNIQUE,
     `role` VARCHAR(32) NULL,
-    `salary` NUMERIC(6 , 2 ) NULL
+    `salary` NUMERIC(6 , 2) NULL
 );
 --
 -- Create model Category
@@ -31,7 +31,7 @@ CREATE TABLE `menu` (
     `id` BIGINT AUTO_INCREMENT NOT NULL PRIMARY KEY,
     `name` VARCHAR(32) NOT NULL UNIQUE,
     `description` VARCHAR(255) NOT NULL,
-    `price` NUMERIC(6 , 2 ) NOT NULL,
+    `price` NUMERIC(6 , 2) NOT NULL,
     `category_id` BIGINT NOT NULL
 );
 --
@@ -41,7 +41,7 @@ CREATE TABLE `orders` (
     `id` BIGINT AUTO_INCREMENT NOT NULL PRIMARY KEY,
     `order_date` DATETIME(6) NOT NULL,
     `quantity` SMALLINT NOT NULL,
-    `total_coast` NUMERIC(6 , 2 ) NOT NULL,
+    `total_cost` NUMERIC(6 , 2) NOT NULL,
     `menu_id` BIGINT NOT NULL,
     `user_id` BIGINT NOT NULL
 );
@@ -61,7 +61,8 @@ CREATE TABLE `bookings` (
     `id` BIGINT AUTO_INCREMENT NOT NULL PRIMARY KEY,
     `date` DATETIME(6) NOT NULL,
     `table_number` SMALLINT NOT NULL,
-    `user_id` BIGINT NOT NULL
+    `user_id` BIGINT NOT NULL,
+    UNIQUE(`date`, `table_number`)
 );
 --
 -- Create constraint bookings_unique on model bookings
